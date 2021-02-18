@@ -2,6 +2,7 @@ import axios from "axios";
 axios.defaults.headers = {
   Accept: "applicaion/json",
   "Content-Type": "application/json",
+  "X-CSRF-TOKEN": document.querySelector('[name="csrf-token"]').content,
 };
 
 export const setAuthHeaders = (setLoading = () => null) => {
