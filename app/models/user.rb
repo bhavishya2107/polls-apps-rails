@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, on: :create
 
   has_secure_password
+  has_secure_token :authentication_token
   before_save :to_lowercase
   private
 
