@@ -10,20 +10,24 @@ class PollsController < ApplicationController
 
   def create
     if logged_in?
-      @poll[:user_id] = current_user.id
       @poll = Poll.new(poll_params)
+      @poll[:user_id] = current_user.id
       if @poll.save
         render status: :ok, json: {notice: 'Poll was created successfully'}
       else
         render status: :unprocessable_entity, json: {errors: @poll.errors.full_messages}
-      end
     end
+  end
+  end
+
+  def show
+    
   end
 
   private
 
   def poll_params
-    params.require(:poll).permit(:title, :user_id, options_attributes: [:name])
+    params.require(:poll).permit(:question, :user_id, options_attributes: [:name])
   end
   
 end

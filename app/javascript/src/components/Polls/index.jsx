@@ -1,11 +1,12 @@
 import React from 'react'
 import NavBar from '../NavBar'
+import Dashboard from './Dashboard'
 
 function Polls() {
   return (
     <div>
       <NavBar/>
-      <h1 className="text-2xl text-center">All Polls</h1>
+      <Dashboard />
     </div>
   )
 }
