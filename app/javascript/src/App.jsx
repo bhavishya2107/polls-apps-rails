@@ -29,7 +29,7 @@ const App = () => {
         <Route exact path="/" component={Polls} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-        <Route exact path="/polls/create" component={CreatePollForm} />
+        <Route exact path="/create" component={CreatePollForm} />
         <Route exact path="/polls/show/:poll_id" component={Poll} />
       </Switch>
     </Router>

@@ -30,7 +30,7 @@ const Input = ({
           transition duration-150 ease-in-out border
           border-gray-300 rounded-md appearance-none
           focus:outline-none focus:shadow-outline-blue
-          focus:border-blue-300 sm:text-sm sm:leading-5"
+          focus:border-blue-500 sm:text-sm sm:leading-5"
         />
       </div>
     </div>

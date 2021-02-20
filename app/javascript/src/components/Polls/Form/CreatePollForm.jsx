@@ -17,7 +17,7 @@ function CreatePollForm(props) {
     try {
       setLoading(true);
       const res = await pollsApi.create({
-        poll:{
+        poll: {
           question: question,
           options_attributes: [
             { name: option1 },
@@ -25,8 +25,7 @@ function CreatePollForm(props) {
             { name: option3 },
             { name: option4 },
           ],
-        }
-       
+        },
       });
       setLoading(false);
       props.history.push("/");
@@ -39,9 +38,9 @@ function CreatePollForm(props) {
   return (
     <div>
       <NavBar />
-      <h1 className="text-4xl text-center">Poll Form</h1>
       <div className="flex items-center justify-center px-4 py-6 lg:px-8 bg-gray-50 sm:px-6">
-        <div className="w-full max-w-lg">
+        <div className="w-full max-w-lg border border-gray-300 rounded-md bg-white p-8 rounded-lg shadow-lg w-full">
+          <h1 className="text-2xl text-center">Poll Form</h1>
           <Input
             label="Question"
             placeholder="Enter question for the poll. "

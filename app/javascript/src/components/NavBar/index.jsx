@@ -31,7 +31,7 @@ const NavBar = () => {
                 Polls
               </Link>
               <Link
-                to="/polls/create"
+                to="/create"
                 className="inline-flex items-center px-1 pt-1 mr-3
                             font-semibold text-sm leading-5
                             text-indigo-500 hover:text-indigo-500"
