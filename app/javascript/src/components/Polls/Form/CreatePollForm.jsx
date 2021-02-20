@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavBar from "components/NavBar";
 import Input from "components/Input";
 import Button from "components/Button";
 import pollsApi from "apis/poll";
@@ -38,7 +37,6 @@ function CreatePollForm(props) {
 
   return (
     <div>
-      <NavBar />
       <div className="flex items-center justify-center px-4 py-6 lg:px-8 bg-gray-50 sm:px-6">
         <div className="w-full max-w-lg border border-gray-300 rounded-md bg-white p-8 rounded-lg shadow-lg w-full">
           <h1 className="text-2xl text-center">Poll Form</h1>

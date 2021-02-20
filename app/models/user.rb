@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :polls, dependent: :destroy
-
+  has_many :votes, dependent: :destroy
+  
   VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i.freeze
   validates :email, presence: true,
             uniqueness: true,
