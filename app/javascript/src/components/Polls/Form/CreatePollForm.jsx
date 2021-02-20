@@ -11,6 +11,7 @@ function CreatePollForm(props) {
   const [option3, setOption3] = useState("");
   const [option4, setOption4] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,9 +30,9 @@ function CreatePollForm(props) {
       });
       setLoading(false);
       props.history.push("/");
-      console.log(res.data);
     } catch (error) {
-      console.log(error);
+      setErrors(error.response.data.errors);
+      console.log(error.response.data.errors);
     }
   };
 
@@ -78,6 +79,7 @@ function CreatePollForm(props) {
           />
         </div>
       </div>
+      {errors ? <p className="text-xl text-red-500 text-center">{errors[0]}</p> : null}
     </div>
   );
 }

@@ -9,8 +9,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState("");
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await authApi.login({ login: { email, password } });
@@ -23,8 +24,9 @@ const Login = () => {
       setLoading(false);
       window.location.href = "/";
     } catch (error) {
-      logger.error(error);
       setLoading(false);
+      setErrors(error.response.data.errors);
+      console.log(error.response.data.errors);
     }
   };
 
@@ -39,4 +41,3 @@ const Login = () => {
 };
 
 export default Login;
-
