@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  # before_action :authenticate_user_using_x_auth_token, only: [:destroy]
+  before_action :authenticate_user_using_x_auth_token, only: [:destroy]
   #login
   def create
     user = User.find_by(email: login_params[:email].downcase)
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       }
     end
    end
-
+   #logout
    def destroy
     @current_user = nil
   end

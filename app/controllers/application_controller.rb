@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     user_email = request.headers["X-Auth-Email"]
     auth_token = request.headers["X-Auth-Token"].presence
     user = user_email && User.find_by_email(user_email)
-
+    puts "emial ----- #{user_email} auth_token ------- #{auth_token}"
     if user && auth_token &&
       ActiveSupport::SecurityUtils.secure_compare(
         user.authentication_token, auth_token
@@ -16,10 +16,6 @@ class ApplicationController < ActionController::Base
         errors: ["Could not authenticate with the provided credentials"]
       }
     end
-  end
-
-  def logged_in?
-    !!session[:user_id]
   end
 
   private
