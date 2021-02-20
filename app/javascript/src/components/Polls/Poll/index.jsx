@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import pollsApi from "apis/poll";
 import { useParams } from "react-router-dom";
-import NavBar from "components/NavBar";
 
 function Poll() {
   const [poll, setPoll] = useState(null);
@@ -25,7 +24,6 @@ function Poll() {
 
   return (
     <div>
-      {/* <NavBar /> */}
       <div className="flex w-full justify-center items-center">
         <div className="w-full max-w-2xl border border-gray-300 rounded-md mt-12">
           <div className="bg-white p-8 rounded-lg shadow-lg w-full">
