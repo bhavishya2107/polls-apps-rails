@@ -18,10 +18,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def logged_in?
-    !!session[:user_id]
-  end
-
   private
     def current_user
       @current_user
