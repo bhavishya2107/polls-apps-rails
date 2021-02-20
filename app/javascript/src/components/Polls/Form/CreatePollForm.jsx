@@ -4,7 +4,7 @@ import Input from "components/Input";
 import Button from "components/Button";
 import pollsApi from "apis/poll";
 
-function CreatePollForm() {
+function CreatePollForm(props) {
   const [question, setQuestion] = useState("");
   const [option1, setOption1] = useState("");
   const [option2, setOption2] = useState("");

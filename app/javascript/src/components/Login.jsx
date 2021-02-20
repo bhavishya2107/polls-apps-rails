@@ -19,10 +19,8 @@ const Login = () => {
         email,
         userId: response.data.userId,
       });
-      console.log(response.data,"response after login")
       setAuthHeaders();
       setLoading(false);
-     
       window.location.href = "/";
     } catch (error) {
       logger.error(error);

@@ -1,4 +1,6 @@
 class PollsController < ApplicationController
+  before_action :authenticate_user_using_x_auth_token, only: [:create]
+
   def index
     @polls = Poll.all
     if @polls
@@ -9,25 +11,23 @@ class PollsController < ApplicationController
   end
 
   def create
-    if logged_in?
       @poll = Poll.new(poll_params)
-      @poll[:user_id] = current_user.id
+      @poll.user_id = current_user.id
       if @poll.save
-        render status: :ok, json: {notice: 'Poll was created successfully'}
+        render status: :ok, json: {notice: 'Poll was created successfully', poll: @poll}
       else
         render status: :unprocessable_entity, json: {errors: @poll.errors.full_messages}
-    end
   end
   end
 
-  def show
+  # def show
     
-  end
+  # end
 
   private
 
   def poll_params
-    params.require(:poll).permit(:question, :user_id, options_attributes: [:name])
+    params.require(:poll).permit(:question, options_attributes: [:name])
   end
   
 end
