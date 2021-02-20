@@ -25,7 +25,7 @@ function Poll() {
 
   return (
     <div>
-      <NavBar />
+      {/* <NavBar /> */}
       <div className="flex w-full justify-center items-center">
         <div className="w-full max-w-2xl border border-gray-300 rounded-md mt-12">
           <div className="bg-white p-8 rounded-lg shadow-lg w-full">

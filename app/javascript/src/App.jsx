@@ -6,6 +6,7 @@ import Polls from "components/Polls";
 import CreatePollForm from "components/Polls/Form/CreatePollForm";
 import { setAuthHeaders } from "apis/axios";
 import Poll from "components/Polls/Poll";
+import NavBar from "components/NavBar";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -25,6 +26,7 @@ const App = () => {
 
   return (
     <Router>
+      <NavBar/>
       <Switch>
         <Route exact path="/" component={Polls} />
         <Route exact path="/login" component={Login} />

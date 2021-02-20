@@ -5,7 +5,7 @@ import Dashboard from './Dashboard'
 function Polls() {
   return (
     <div>
-      <NavBar/>
+      {/* <NavBar/> */}
       <Dashboard />
     </div>
   )
