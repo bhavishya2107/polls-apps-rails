@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import pollsApi from "apis/poll";
 import { useParams } from "react-router-dom";
+import votesApi from "apis/vote";
 
 function Poll() {
   const [poll, setPoll] = useState(null);
@@ -22,6 +23,16 @@ function Poll() {
     }
   };
 
+  const handleVote = async (option_id) => {
+    try {
+      const vote = await votesApi.create({vote:{poll_id, option_id}})
+      fetchCurrentPoll()
+      console.log(vote.data)
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
   return (
     <div>
       <div className="flex w-full justify-center items-center">
@@ -33,8 +44,10 @@ function Poll() {
                 <label
                   key={option.id}
                   className="block mt-4 border border-gray-300 hover:border-blue-500 rounded-lg py-2 px-6 text-lg"
+                  onClick={() => handleVote(option.id)}
                 >
                   {option.name}
+                  <span>   *Vote Count - {option.vote_count}*</span>
                 </label>
               );
             })}

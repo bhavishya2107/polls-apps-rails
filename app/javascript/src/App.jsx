@@ -7,13 +7,19 @@ import CreatePollForm from "components/Polls/Form/CreatePollForm";
 import { setAuthHeaders } from "apis/axios";
 import Poll from "components/Polls/Poll";
 import NavBar from "components/NavBar";
+import PrivateRoute from "components/common/PrivateRoute";
+import { either, isEmpty, isNil } from "ramda";
+import { getFromLocalStorage } from "./helpers/storage";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const authToken = getFromLocalStorage("authToken");
+  const isLoggedIn = !either(isNil, isEmpty)(authToken) && authToken !== "null";
 
   useEffect(() => {
     setAuthHeaders();
     setLoading(false);
+    console.log(isLoggedIn);
   }, []);
 
   if (loading) {
@@ -26,13 +32,19 @@ const App = () => {
 
   return (
     <Router>
-      <NavBar/>
+      <NavBar isLoggedIn={isLoggedIn}/>
       <Switch>
         <Route exact path="/" component={Polls} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
-        <Route exact path="/create" component={CreatePollForm} />
         <Route exact path="/polls/show/:poll_id" component={Poll} />
+        <PrivateRoute
+          exact
+          path="/create"
+          redirectRoute="/login"
+          component={CreatePollForm}
+          condition={isLoggedIn}
+        />
       </Switch>
     </Router>
   );

@@ -8,8 +8,6 @@ class VotesController < ApplicationController
       vote.user_id = current_user.id
     if vote.save
       option = poll.options.detect{ |option| option.id == vote.option_id  }
-      puts "#{vote.option_id} vote"
-      puts "#{option} its a option" 
       option.increment!(:vote_count)
       render status: :ok, json: { notice: "You have voted successfully" }
     else
