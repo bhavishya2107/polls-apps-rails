@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { setToLocalStorage } from "helpers/storage";
-import authApi from "../../apis/auth";
-import { resetAuthTokens } from "../../apis/axios";
+import authApi from "apis/auth";
+import { resetAuthTokens } from "apis/axios";
+import { getFromLocalStorage } from "../../helpers/storage";
 
-const NavBar = () => {
+const NavBar = ({ isLoggedIn }) => {
   const handleLogout = async () => {
     try {
       await authApi.logout();
@@ -14,6 +15,10 @@ const NavBar = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const getUserEmail = () => {
+    return isLoggedIn ? getFromLocalStorage("authEmail") : "";
   };
 
   return (
@@ -39,20 +44,43 @@ const NavBar = () => {
                 <i className={`ri-add-fill text-bb-purple`}></i>
                 Create
               </Link>
+              <p
+                className="inline-flex items-center px-1 pt-1 mr-3
+                            font-semibold text-sm leading-5
+                            text-gray-500 hover:text-purple-500"
+              >
+                <i className={`ri-add-fill text-bb-purple`}></i>
+                {getUserEmail()}
+              </p>
             </div>
           </div>
-          <div className="flex items-center justify-end">
-            <a
-              onClick={handleLogout}
-              className="inline-flex items-center px-1 pt-1 text-sm
+          {isLoggedIn ? (
+            <div className="flex items-center justify-end">
+              <a
+                onClick={handleLogout}
+                className="inline-flex items-center px-1 pt-1 text-sm
              font-semibold leading-5 text-bb-gray-600 text-opacity-50
              transition duration-150 ease-in-out border-b-2
              border-transparent hover:text-bb-gray-600 focus:outline-none
              focus:text-bb-gray-700 cursor-pointer"
-            >
-              LogOut
-            </a>
-          </div>
+              >
+                LogOut
+              </a>
+            </div>
+          ) : (
+            <div className="flex items-center justify-end">
+              <Link
+                to="/login"
+                className="inline-flex items-center px-1 pt-1 text-sm
+             font-semibold leading-5 text-bb-gray-600 text-opacity-50
+             transition duration-150 ease-in-out border-b-2
+             border-transparent hover:text-bb-gray-600 focus:outline-none
+             focus:text-bb-gray-700 cursor-pointer"
+              >
+                LogIn
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </nav>

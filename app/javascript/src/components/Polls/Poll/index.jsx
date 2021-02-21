@@ -26,6 +26,7 @@ function Poll() {
   const handleVote = async (option_id) => {
     try {
       const vote = await votesApi.create({vote:{poll_id, option_id}})
+      fetchCurrentPoll()
       console.log(vote.data)
     } catch (error) {
       console.log(error)
@@ -46,6 +47,7 @@ function Poll() {
                   onClick={() => handleVote(option.id)}
                 >
                   {option.name}
+                  <span>   *Vote Count - {option.vote_count}*</span>
                 </label>
               );
             })}
