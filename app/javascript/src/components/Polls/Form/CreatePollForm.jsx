@@ -77,7 +77,7 @@ function CreatePollForm(props) {
           />
         </div>
       </div>
-      {errors ? <p className="text-xl text-red-500 text-center">{errors[0]}</p> : null}
+      {errors ? <p className="text-xl text-red-300 text-center">{errors[0]}</p> : null}
     </div>
   );
 }

@@ -30,20 +30,26 @@ const NavBar = ({ isLoggedIn }) => {
               <Link
                 to="/"
                 className="inline-flex items-center px-1 pt-1 mr-3
-                            font-semibold text-sm leading-5
+                            font-semibold text-3xl leading-5
                             text-indigo-500 hover:text-indigo-500"
               >
                 Polls
               </Link>
-              <Link
-                to="/create"
-                className="inline-flex items-center px-1 pt-1 mr-3
+
+              {isLoggedIn ? (
+                <Link
+                  to="/create"
+                  className="inline-flex items-center px-1 pt-1 mr-3
                             font-semibold text-sm leading-5
                             text-indigo-500 hover:text-indigo-500"
-              >
-                <i className={`ri-add-fill text-bb-purple`}></i>
-                Create
-              </Link>
+                >
+                  <i className={`ri-add-fill text-bb-purple`}></i>
+                  Create
+                </Link>
+              ) : (
+                ""
+              )}
+
               <p
                 className="inline-flex items-center px-1 pt-1 mr-3
                             font-semibold text-sm leading-5

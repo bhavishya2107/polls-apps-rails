@@ -8,7 +8,7 @@ const Signup = ({ history }) => {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState("")
+  const [errors, setErrors] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
