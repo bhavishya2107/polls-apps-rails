@@ -7,6 +7,8 @@ function Poll() {
   const [poll, setPoll] = useState(null);
   const [options, setOptions] = useState([]);
   const { poll_id } = useParams();
+  const [errors, setErrors] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     fetchCurrentPoll();
@@ -19,17 +21,19 @@ function Poll() {
       setOptions(current_poll.data.options);
       console.log(current_poll.data.options);
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.errors);
     }
   };
 
   const handleVote = async (option_id) => {
     try {
-      const vote = await votesApi.create({vote:{poll_id, option_id}})
-      fetchCurrentPoll()
-      console.log(vote.data)
+      const vote = await votesApi.create({ vote: { poll_id, option_id } });
+      fetchCurrentPoll();
+      // console.log(vote.data);
+      setMessage(vote.data.notice);
     } catch (error) {
-      console.log(error)
+      setErrors(error.response.data.errors);
+      console.log(error);
     }
   };
 
@@ -47,10 +51,20 @@ function Poll() {
                   onClick={() => handleVote(option.id)}
                 >
                   {option.name}
-                  <span>   *Vote Count - {option.vote_count}*</span>
+                  <span className="px-12 text-purple-600">
+                    Votes- {option.vote_count}
+                  </span>
                 </label>
               );
             })}
+            {message ? (
+              <p className="text-xl text-red-500 text-center mt-3">{message + " 🙌"}</p>
+            ) : null}
+            {errors ? (
+              <p className="text-xl text-red-500 text-center mt-3">
+                {errors[0] + " ☠️"}
+              </p>
+            ) : null}
           </div>
         </div>
       </div>
