@@ -38,7 +38,7 @@ function CreatePollForm(props) {
   return (
     <div>
       <div className="flex items-center justify-center px-4 py-6 lg:px-8 bg-gray-50 sm:px-6">
-        <div className="w-full max-w-lg border border-gray-300 rounded-md bg-white p-8 rounded-lg shadow-lg w-full">
+        <div className="max-w-lg border border-gray-300 bg-white p-8 rounded-lg shadow-lg w-full">
           <h1 className="text-2xl text-center">Poll Form</h1>
           <Input
             label="Question"
